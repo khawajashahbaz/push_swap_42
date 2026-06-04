@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mshahbaz <mshahbaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muafzal <muafzal@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 12:40:40 by mshahbaz          #+#    #+#             */
-/*   Updated: 2026/06/04 13:07:09 by mshahbaz         ###   ########.fr       */
+/*   Updated: 2026/06/04 14:21:00 by muafzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ int	main(int argc, char *argv[])
 		printf("Entering to Sorting Techniques");
 	}
 
-	
 	return (0);
 }
