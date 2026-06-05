@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mshahbaz <mshahbaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muafzal <muafzal@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 13:08:00 by mshahbaz          #+#    #+#             */
-/*   Updated: 2026/06/05 11:42:55 by mshahbaz         ###   ########.fr       */
+/*   Updated: 2026/06/05 14:52:28 by muafzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# include <unistd.h>
+# include <stdlib.h>
 
 typedef enum e_flags
 {
