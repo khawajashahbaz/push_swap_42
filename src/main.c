@@ -6,7 +6,7 @@
 /*   By: mshahbaz <mshahbaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 12:40:40 by mshahbaz          #+#    #+#             */
-/*   Updated: 2026/06/05 12:03:42 by mshahbaz         ###   ########.fr       */
+/*   Updated: 2026/06/05 14:39:28 by mshahbaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 int	main(int argc, char *argv[])
 {
 	int		i;
-
 
 	i = 0;
 	printf("%d \n", argc - 1);
@@ -34,7 +33,5 @@ int	main(int argc, char *argv[])
 	{
 		printf("Entering to Sorting Techniques");
 	}
-
-	
 	return (0);
 }
