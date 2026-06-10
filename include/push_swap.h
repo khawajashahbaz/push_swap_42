@@ -6,15 +6,16 @@
 /*   By: muafzal <muafzal@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 13:08:00 by mshahbaz          #+#    #+#             */
-/*   Updated: 2026/06/05 14:52:28 by muafzal          ###   ########.fr       */
+/*   Updated: 2026/06/10 13:31:41 by muafzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <unistd.h>
+# include <limits.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 typedef enum e_flags
 {
@@ -57,48 +58,58 @@ typedef struct s_data
 	t_stack	a;
 	t_stack	b;
 	int		total_size;
-	t_flags	e_flags;
+	t_flags	flags;
 	t_bench	bench;
 }	t_data;
 
 void	init_data(t_data *d);
 void	free_data(t_data *d);
 int		error_exit(t_data *d);
-int		parse_args(int argc, char **argv, t_data *d);
-int		validate_and_build(int *vals, int count, t_data *d);
-void	assign_ranks(t_stack *a);
-double	compute_disorder(t_stack *a);
+int		parse_args(int ac, char **av, t_data *d);
+int		is_flag(char *s);
+int		set_flag(char *s, t_data *d);
+int		parse_word(char *s, t_data *d);
+int		parse_words(char *s, t_data *d);
+int		add_number(t_data *d, int value);
+int		to_int(char *s, int *out);
+int		ps_atoi_checked(char *s, int *out);
+int		ps_is_space(char c);
+int		ps_strlen(char *s);
+int		ps_strcmp(char *a, char *b);
+void	ps_putstr_fd(char *s, int fd);
+void	ps_putnbr_fd(int n, int fd);
+int		stack_init(t_stack *s, int cap);
+void	stack_free(t_stack *s);
+int		stack_push_back(t_stack *s, int value, int rank);
 int		is_sorted(t_stack *s);
+int		find_min_pos(t_stack *s);
+int		find_max_pos(t_stack *s);
+int		find_min_rank(t_stack *s);
+int		find_max_rank(t_stack *s);
+void	assign_ranks(t_data *d);
+double	compute_disorder(t_stack *s);
+void	emit(t_data *d, char *op);
+void	set_bench(t_data *d, char *strategy, char *complexity);
+void	print_bench(t_data *d);
+void	sa(t_data *d);
+void	sb(t_data *d);
+void	ss(t_data *d);
+void	pa(t_data *d);
+void	pb(t_data *d);
+void	ra(t_data *d);
+void	rb(t_data *d);
+void	rr(t_data *d);
+void	rra(t_data *d);
+void	rrb(t_data *d);
+void	rrr(t_data *d);
 void	run_strategy(t_data *d);
+void	sort_adaptive(t_data *d);
 void	sort_small(t_data *d);
+void	sort_three(t_data *d);
 void	sort_simple(t_data *d);
 void	sort_medium(t_data *d);
 void	sort_complex(t_data *d);
-void	print_bench(t_data *d);
-void	set_bench_strategy(t_data *d, char *name, char *complexity);
-void	emit_op(t_data *d, char *op);
-void	op_sa(t_data *d);
-void	op_sb(t_data *d);
-void	op_ss(t_data *d);
-void	op_pa(t_data *d);
-void	op_pb(t_data *d);
-void	op_ra(t_data *d);
-void	op_rb(t_data *d);
-void	op_rr(t_data *d);
-void	op_rra(t_data *d);
-void	op_rrb(t_data *d);
-void	op_rrr(t_data *d);
-int		stack_init(t_stack *s, int cap);
-void	stack_free(t_stack *s);
-int		find_pos_min(t_stack *s);
-int		find_pos_max(t_stack *s);
-void	rotate_a_to(t_data *d, int pos);
-void	rotate_b_to(t_data *d, int pos);
-int		has_rank_range(t_stack *s, int start, int end);
-int		find_pos_range(t_stack *s, int start, int end);
-int		ft_strlen(char *s);
-int		ft_strcmp(char *a, char *b);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putdouble2_fd(double x, int fd);
+void	rotate_a_to_pos(t_data *d, int pos);
+void	rotate_b_to_pos(t_data *d, int pos);
+
 #endif
