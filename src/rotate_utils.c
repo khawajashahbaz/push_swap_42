@@ -1,37 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   startegy.c                                         :+:      :+:    :+:   */
+/*   rotate_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muafzal <muafzal@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 14:25:32 by muafzal           #+#    #+#             */
-/*   Updated: 2026/06/10 15:58:56 by muafzal          ###   ########.fr       */
+/*   Created: 2026/06/10 13:18:50 by muafzal           #+#    #+#             */
+/*   Updated: 2026/06/10 14:23:40 by muafzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_adaptive(t_data *d)
+void	rotate_a_to_pos(t_data *d, int pos)
 {
-	if (d->bench.disorder < 0.2)
-		sort_simple(d);
-	else if (d->bench.disorder < 0.5)
-		sort_medium(d);
+	if (pos <= d->a.size / 2)
+	{
+		while (pos-- > 0)
+			ra(d);
+	}
 	else
-		sort_complex(d);
+	{
+		pos = d->a.size - pos;
+		while (pos-- > 0)
+			rra(d);
+	}
 }
 
-void	run_strategy(t_data *d)
+void	rotate_b_to_pos(t_data *d, int pos)
 {
-	if (d->a.size <= 5)
-		sort_small(d);
-	else if (d->flags == STRAT_SIMPLE)
-		sort_simple(d);
-	else if (d->flags == STRAT_MEDIUM)
-		sort_medium(d);
-	else if (d->flags == STRAT_COMPLEX)
-		sort_complex(d);
+	if (pos <= d->b.size / 2)
+	{
+		while (pos-- > 0)
+			rb(d);
+	}
 	else
-		sort_adaptive(d);
+	{
+		pos = d->b.size - pos;
+		while (pos-- > 0)
+			rrb(d);
+	}
 }
