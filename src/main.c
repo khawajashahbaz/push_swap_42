@@ -6,32 +6,29 @@
 /*   By: mshahbaz <mshahbaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 12:40:40 by mshahbaz          #+#    #+#             */
-/*   Updated: 2026/06/05 14:39:28 by mshahbaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 16:04:47 by mshahbaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
+#include "push_swap.h"
 
-int	main(int argc, char *argv[])
+int	main(int ac, char **av)
 {
-	int		i;
+	t_data	d;
 
-	i = 0;
-	printf("%d \n", argc - 1);
-	while (i < argc)
-	{
-		printf("%s \n", argv[i]);
-		i++;
-	}
-	if (argc == 1)
-	{
-		printf("No arguemts were passed - Exiting programm Safely");
+	if (ac == 1)
 		return (0);
-	}
-	if (argc >= 2)
-	{
-		printf("Entering to Sorting Techniques");
-	}
+	init_data(&d);
+	if (!parse_args(ac, av, &d))
+		return (error_exit(&d));
+	d.bench.disorder = compute_disorder(&d.a);
+	assign_ranks(&d);
+	if (!stack_init(&d.b, d.total_size))
+		return (error_exit(&d));
+	if (!is_sorted(&d.a))
+		run_strategy(&d);
+	if (d.bench.enabled)
+		print_bench(&d);
+	free_data(&d);
 	return (0);
 }
