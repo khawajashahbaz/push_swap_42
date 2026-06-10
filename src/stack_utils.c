@@ -6,56 +6,54 @@
 /*   By: mshahbaz <mshahbaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 14:40:32 by mshahbaz          #+#    #+#             */
-/*   Updated: 2026/06/05 14:44:27 by mshahbaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 16:30:03 by mshahbaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate_a_to(t_data *d, int pos)
-{
-	if (pos <= d->a.size / 2)
-		while (pos-- > 0)
-			op_ra(d);
-	else
-		while (pos++ < d->a.size)
-			op_rra(d);
-}
-
-void	rotate_b_to(t_data *d, int pos)
-{
-	if (pos <= d->b.size / 2)
-		while (pos-- > 0)
-			op_rb(d);
-	else
-		while (pos++ < d->b.size)
-			op_rrb(d);
-}
-
-int	has_rank_range(t_stack *s, int start, int end)
+int	find_min_pos(t_stack *s)
 {
 	int	i;
+	int	pos;
 
-	i = 0;
+	i = 1;
+	pos = 0;
 	while (i < s->size)
 	{
-		if (s->r[i] >= start && s->r[i] <= end)
-			return (1);
+		if (s->r[i] < s->r[pos])
+			pos = i;
 		i++;
 	}
-	return (0);
+	return (pos);
 }
 
-int	find_pos_range(t_stack *s, int start, int end)
+int	find_max_pos(t_stack *s)
 {
 	int	i;
+	int	pos;
 
-	i = 0;
+	i = 1;
+	pos = 0;
 	while (i < s->size)
 	{
-		if (s->r[i] >= start && s->r[i] <= end)
-			return (i);
+		if (s->r[i] > s->r[pos])
+			pos = i;
 		i++;
 	}
-	return (-1);
+	return (pos);
+}
+
+int	find_min_rank(t_stack *s)
+{
+	if (s->size == 0)
+		return (0);
+	return (s->r[find_min_pos(s)]);
+}
+
+int	find_max_rank(t_stack *s)
+{
+	if (s->size == 0)
+		return (0);
+	return (s->r[find_max_pos(s)]);
 }

@@ -1,45 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mshahbaz <mshahbaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 16:51:19 by mshahbaz          #+#    #+#             */
-/*   Updated: 2026/06/10 16:52:02 by mshahbaz         ###   ########.fr       */
+/*   Created: 2026/06/10 16:23:41 by mshahbaz          #+#    #+#             */
+/*   Updated: 2026/06/10 16:23:53 by mshahbaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static long	count_bad_pairs(t_stack *s)
+int	parse_word(char *s, t_data *d)
 {
-	long	bad;
-	int		i;
-	int		j;
+	int	value;
 
-	bad = 0;
-	i = 0;
-	while (i < s->size)
-	{
-		j = i + 1;
-		while (j < s->size)
-		{
-			if (s->v[i] > s->v[j])
-				bad++;
-			j++;
-		}
-		i++;
-	}
-	return (bad);
+	if (!to_int(s, &value))
+		return (0);
+	return (add_number(d, value));
 }
 
-double	compute_disorder(t_stack *s)
+int	to_int(char *s, int *out)
 {
-	long	pairs;
-
-	pairs = ((long)s->size * (s->size - 1)) / 2;
-	if (pairs == 0)
-		return (0.0);
-	return ((double)count_bad_pairs(s) / (double)pairs);
+	return (ps_atoi_checked(s, out));
 }
