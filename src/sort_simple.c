@@ -3,60 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   sort_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mshahbaz <mshahbaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muafzal <muafzal@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 12:20:12 by mshahbaz          #+#    #+#             */
-/*   Updated: 2026/06/04 12:26:09 by mshahbaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 16:22:21 by muafzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
+#include "push_swap.h"
 
-void	ft_swap(int *a, int *b)
+void	sort_simple(t_data *d)
 {
-	int	temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
-void	selection_sort(int A[], int n)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	i = 0;
-	while (i < n - 1)
+	set_bench(d, "simple min extraction", "O(n^2)");
+	while (d->a.size > 3)
 	{
-		j = i;
-		k = i;
-		while (j < n)
-		{
-			if (A[j] < A[k])
-				k = j;
-			j++;
-		}
-		ft_swap(&A[i], &A[k]);
-		i++;
+		rotate_a_to_pos(d, find_min_pos(&d->a));
+		pb(d);
 	}
-}
-
-int main (void)
-{
-	int	A[] = {11,9,3,2,4,5,6,2,8};
-	int	i;
-	int	n;
-
-	n = sizeof(A) / sizeof(A[0]);
-	selection_sort(A, n);
-	i = 0;
-	while (i < n)
-	{
-		printf("%d \n", A[i]);
-		i++;
-	}
-	return (0);
+	if (d->a.size == 2 && d->a.r[0] > d->a.r[1])
+		sa(d);
+	else if (d->a.size == 3)
+		sort_three(d);
+	while (d->b.size > 0)
+		pa(d);
 }
