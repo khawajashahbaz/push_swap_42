@@ -6,7 +6,7 @@
 /*   By: muafzal <muafzal@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 19:09:39 by muafzal           #+#    #+#             */
-/*   Updated: 2026/06/08 19:36:25 by muafzal          ###   ########.fr       */
+/*   Updated: 2026/06/10 14:19:37 by muafzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static void	reverse_stack(t_stack *s)
 {
+	int	last_v;
+	int	last_r;
 	int	i;
-	int	tv;
-	int	tr;
 
 	if (s->size < 2)
 		return ;
-	tv = s->v[s->size - 1];
-	tr = s->r[s->size - 1];
+	last_v = s->v[s->size - 1];
+	last_r = s->r[s->size - 1];
 	i = s->size - 1;
 	while (i > 0)
 	{
@@ -29,25 +29,25 @@ static void	reverse_stack(t_stack *s)
 		s->r[i] = s->r[i - 1];
 		i--;
 	}
-	s->v[0] = tv;
-	s->r[0] = tr;
+	s->v[0] = last_v;
+	s->r[0] = last_r;
 }
 
-void	op_rra(t_data *d)
+void	rra(t_data *d)
 {
 	reverse_stack(&d->a);
-	emit_op(d, "rra");
+	emit(d, "rra");
 }
 
-void	op_rrb(t_data *d)
+void	rrb(t_data *d)
 {
 	reverse_stack(&d->b);
-	emit_op(d, "rrb");
+	emit(d, "rrb");
 }
 
-void	op_rrr(t_data *d)
+void	rrr(t_data *d)
 {
 	reverse_stack(&d->a);
 	reverse_stack(&d->b);
-	emit_op(d, "rrr");
+	emit(d, "rrr");
 }
