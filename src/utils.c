@@ -6,7 +6,7 @@
 /*   By: mshahbaz <mshahbaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 11:46:47 by mshahbaz          #+#    #+#             */
-/*   Updated: 2026/06/05 11:51:05 by mshahbaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 16:09:10 by mshahbaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,7 @@ void	ft_putnbr_fd(int n, int fd)
 	write(fd, &c, 1);
 }
 
-void	ft_putdouble2_fd(double x, int fd)
+int	ft_is_space(char c)
 {
-	int	whole;
-	int	frac;
-
-	whole = (int)x;
-	frac = (int)((x - whole) * 100.0 + 0.5);
-	ft_putnbr_fd(whole, fd);
-	write(fd, ".", 1);
-	if (frac < 10)
-		write(fd, "0", 1);
-	ft_putnbr_fd(frac, fd);
+	return (c == ' ' || (c >= 9 && c <= 13));
 }

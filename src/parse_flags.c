@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   parse_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mshahbaz <mshahbaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 15:09:25 by mshahbaz          #+#    #+#             */
-/*   Updated: 2026/06/10 16:10:09 by mshahbaz         ###   ########.fr       */
+/*   Created: 2026/06/10 16:00:40 by mshahbaz          #+#    #+#             */
+/*   Updated: 2026/06/10 16:11:53 by mshahbaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	parse_args(int ac, char **av, t_data *d)
+int	is_flag(char *s)
 {
-	int	i;
+	return (s && s[0] == '-' && s[1] == '-');
+}
 
-	if (!stack_init(&d->a, ac * 8))
+int	set_flag(char *s, t_data *d)
+{
+	if (!ps_strcmp(s, "--simple"))
+		d->flags = STRAT_SIMPLE;
+	else if (!ps_strcmp(s, "--medium"))
+		d->flags = STRAT_MEDIUM;
+	else if (!ps_strcmp(s, "--complex"))
+		d->flags = STRAT_COMPLEX;
+	else if (!ps_strcmp(s, "--adaptive"))
+		d->flags = STRAT_ADAPTIVE;
+	else if (!ps_strcmp(s, "--bench"))
+		d->bench.enabled = 1;
+	else
 		return (0);
-	i = 1;
-	while (i < ac)
-	{
-		if (is_flag(av[i]))
-		{
-			if (!set_flag(av[i], d))
-				return (0);
-		}
-		else if (!parse_words(av[i], d))
-			return (0);
-		i++;
-	}
-	d->total_size = d->a.size;
-	return (d->total_size > 0);
+	return (1);
 }
