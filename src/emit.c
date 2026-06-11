@@ -6,12 +6,12 @@
 /*   By: mshahbaz <mshahbaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:22:12 by mshahbaz          #+#    #+#             */
-/*   Updated: 2026/06/11 14:02:49 by mshahbaz         ###   ########.fr       */
+/*   Updated: 2026/06/11 14:06:06 by mshahbaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
- 
+
 static void	count_op_two(t_data *d, char *op)
 {
 	if (!ps_strcmp(op, "ra"))
@@ -27,7 +27,7 @@ static void	count_op_two(t_data *d, char *op)
 	else if (!ps_strcmp(op, "rrr"))
 		d->bench.rrr++;
 }
- 
+
 static void	count_op(t_data *d, char *op)
 {
 	if (!ps_strcmp(op, "sa"))
@@ -43,7 +43,7 @@ static void	count_op(t_data *d, char *op)
 	else
 		count_op_two(d, op);
 }
- 
+
 void	emit(t_data *d, char *op)
 {
 	ps_putstr_fd(op, 1);
