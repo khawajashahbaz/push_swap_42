@@ -6,7 +6,7 @@
 /*   By: mshahbaz <mshahbaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:25:34 by mshahbaz          #+#    #+#             */
-/*   Updated: 2026/06/11 14:04:24 by mshahbaz         ###   ########.fr       */
+/*   Updated: 2026/06/11 15:40:54 by mshahbaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ void	ss(t_data *d)
 {
 	swap_stack(&d->a);
 	swap_stack(&d->b);
-emit(d, "ss");
+	emit(d, "ss");
 }

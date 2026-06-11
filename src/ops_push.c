@@ -6,16 +6,16 @@
 /*   By: mshahbaz <mshahbaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:28:48 by mshahbaz          #+#    #+#             */
-/*   Updated: 2026/06/11 14:04:46 by mshahbaz         ###   ########.fr       */
+/*   Updated: 2026/06/11 15:40:40 by mshahbaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
- 
+
 static void	push_to(t_stack *dst, t_stack *src)
 {
 	int	i;
- 
+
 	if (src->size == 0 || dst->size >= dst->cap)
 		return ;
 	i = dst->size;
@@ -37,13 +37,13 @@ static void	push_to(t_stack *dst, t_stack *src)
 	}
 	src->size--;
 }
- 
+
 void	pa(t_data *d)
 {
 	push_to(&d->a, &d->b);
 	emit(d, "pa");
 }
- 
+
 void	pb(t_data *d)
 {
 	push_to(&d->b, &d->a);

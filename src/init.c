@@ -6,7 +6,7 @@
 /*   By: mshahbaz <mshahbaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 16:05:28 by mshahbaz          #+#    #+#             */
-/*   Updated: 2026/06/10 16:05:46 by mshahbaz         ###   ########.fr       */
+/*   Updated: 2026/06/11 15:40:22 by mshahbaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	init_bench(t_bench *b)
 	b->strategy = "adaptive";
 	b->complexity = "selected at runtime";
 }
+
 void	init_data(t_data *d)
 {
 	d->a.v = NULL;
