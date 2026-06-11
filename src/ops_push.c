@@ -6,46 +6,46 @@
 /*   By: mshahbaz <mshahbaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:28:48 by mshahbaz          #+#    #+#             */
-/*   Updated: 2026/06/08 18:30:26 by mshahbaz         ###   ########.fr       */
+/*   Updated: 2026/06/11 14:04:46 by mshahbaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	push_stack(t_stack *from, t_stack *to)
+ 
+static void	push_to(t_stack *dst, t_stack *src)
 {
 	int	i;
-
-	if (from->size < 1)
+ 
+	if (src->size == 0 || dst->size >= dst->cap)
 		return ;
-	i = to->size;
+	i = dst->size;
 	while (i > 0)
 	{
-		to->v[i] = to->v[i - 1];
-		to->r[i] = to->r[i - 1];
+		dst->v[i] = dst->v[i - 1];
+		dst->r[i] = dst->r[i - 1];
 		i--;
 	}
-	to->v[0] = from->v[0];
-	to->r[0] = from->r[0];
-	to->size++;
+	dst->v[0] = src->v[0];
+	dst->r[0] = src->r[0];
+	dst->size++;
 	i = 0;
-	while (i + 1 < from->size)
+	while (i + 1 < src->size)
 	{
-		from->v[i] = from->v[i + 1];
-		from->r[i] = from->r[i + 1];
+		src->v[i] = src->v[i + 1];
+		src->r[i] = src->r[i + 1];
 		i++;
 	}
-	from->size--;
+	src->size--;
 }
-
-void	op_pa(t_data *d)
+ 
+void	pa(t_data *d)
 {
-	push_stack(&d->b, &d->a);
-	emit_op(d, "pa");
+	push_to(&d->a, &d->b);
+	emit(d, "pa");
 }
-
-void	op_pb(t_data *d)
+ 
+void	pb(t_data *d)
 {
-	push_stack(&d->a, &d->b);
-	emit_op(d, "pb");
+	push_to(&d->b, &d->a);
+	emit(d, "pb");
 }
