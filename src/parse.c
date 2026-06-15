@@ -16,13 +16,17 @@ int	parse_args(int ac, char **av, t_data *d)
 {
 	int	i;
 
+	/* pre-allocate stack A with a heuristic capacity to reduce reallocs */
 	if (!stack_init(&d->a, ac * 8))
 		return (0);
+
+	/* parse each CLI token: flags or groups of numbers */
 	i = 1;
 	while (i < ac)
 	{
 		if (is_flag(av[i]))
 		{
+			/* set program flags like --bench or strategy overrides */
 			if (!set_flag(av[i], d))
 				return (0);
 		}
@@ -30,6 +34,8 @@ int	parse_args(int ac, char **av, t_data *d)
 			return (0);
 		i++;
 	}
+
+	/* total elements parsed into A */
 	d->total_size = d->a.size;
 	return (d->total_size > 0);
 }

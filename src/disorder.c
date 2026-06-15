@@ -25,6 +25,7 @@ static long	count_bad_pairs(t_stack *s)
 		j = i + 1;
 		while (j < s->size)
 		{
+			/* for every pair (i,j) with i<j, increment if out-of-order */
 			if (s->v[i] > s->v[j])
 				bad++;
 			j++;
@@ -41,5 +42,6 @@ double	compute_disorder(t_stack *s)
 	pairs = ((long)s->size * (s->size - 1)) / 2;
 	if (pairs == 0)
 		return (0.0);
+	/* normalize bad pairs by total possible pairs to get [0,1] */
 	return ((double)count_bad_pairs(s) / (double)pairs);
 }

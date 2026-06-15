@@ -18,8 +18,11 @@ static void	reverse_stack(t_stack *s)
 	int	last_r;
 	int	i;
 
+	/* no-op when fewer than two elements */
 	if (s->size < 2)
 		return ;
+
+	/* save last element, shift everything right, place saved at index 0 */
 	last_v = s->v[s->size - 1];
 	last_r = s->r[s->size - 1];
 	i = s->size - 1;

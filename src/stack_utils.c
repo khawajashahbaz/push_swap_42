@@ -21,6 +21,7 @@ int	find_min_pos(t_stack *s)
 	pos = 0;
 	while (i < s->size)
 	{
+		/* track index of smallest rank seen so far */
 		if (s->r[i] < s->r[pos])
 			pos = i;
 		i++;
@@ -37,6 +38,7 @@ int	find_max_pos(t_stack *s)
 	pos = 0;
 	while (i < s->size)
 	{
+		/* track index of largest rank seen so far */
 		if (s->r[i] > s->r[pos])
 			pos = i;
 		i++;
@@ -46,6 +48,7 @@ int	find_max_pos(t_stack *s)
 
 int	find_min_rank(t_stack *s)
 {
+	/* return 0 for empty stack, otherwise minimal rank value */
 	if (s->size == 0)
 		return (0);
 	return (s->r[find_min_pos(s)]);
@@ -53,6 +56,7 @@ int	find_min_rank(t_stack *s)
 
 int	find_max_rank(t_stack *s)
 {
+	/* return 0 for empty stack, otherwise maximal rank value */
 	if (s->size == 0)
 		return (0);
 	return (s->r[find_max_pos(s)]);

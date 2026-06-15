@@ -59,3 +59,8 @@ int	ft_is_space(char c)
 {
 	return (c == ' ' || (c >= 9 && c <= 13));
 }
+
+/* Public wrappers matching header naming (ps_*). The project uses ps_*
+   in most files; keep these thin wrappers to avoid renaming many callers. */
+/* Public API: expose the ft_* helpers declared in the header. The
+   implementations are the ft_* functions defined above (ft_strlen, etc.). */

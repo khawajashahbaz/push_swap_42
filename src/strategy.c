@@ -14,6 +14,7 @@
 
 void	sort_adaptive(t_data *d)
 {
+	/* pick strategy based on precomputed disorder metric */
 	if (d->bench.disorder < 0.2)
 		sort_simple(d);
 	else if (d->bench.disorder < 0.5)
@@ -24,6 +25,7 @@ void	sort_adaptive(t_data *d)
 
 void	run_strategy(t_data *d)
 {
+	/* top-level decision: small-size special case or flag-driven choice */
 	if (d->a.size <= 5)
 		sort_small(d);
 	else if (d->flags == STRAT_SIMPLE)

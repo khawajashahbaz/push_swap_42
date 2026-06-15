@@ -17,8 +17,11 @@ static void	swap_stack(t_stack *s)
 	int	v;
 	int	r;
 
+	/* swapping requires at least two elements */
 	if (s->size < 2)
 		return ;
+
+	/* swap both value and rank at indices 0 and 1 */
 	v = s->v[0];
 	r = s->r[0];
 	s->v[0] = s->v[1];

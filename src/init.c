@@ -14,6 +14,7 @@
 
 static void	init_bench(t_bench *b)
 {
+	/* initialize all benchmarking counters and labels */
 	b->enabled = 0;
 	b->total = 0;
 	b->sa = 0;
@@ -34,6 +35,7 @@ static void	init_bench(t_bench *b)
 
 void	init_data(t_data *d)
 {
+	/* clear stacks and metadata to safe defaults */
 	d->a.v = NULL;
 	d->a.r = NULL;
 	d->a.size = 0;
@@ -43,6 +45,8 @@ void	init_data(t_data *d)
 	d->b.size = 0;
 	d->b.cap = 0;
 	d->total_size = 0;
+
+	/* default strategy: adaptive (chosen based on disorder) */
 	d->flags = STRAT_ADAPTIVE;
 	init_bench(&d->bench);
 }

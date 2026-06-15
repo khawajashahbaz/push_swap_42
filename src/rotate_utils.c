@@ -14,6 +14,7 @@
 
 void	rotate_a_to_pos(t_data *d, int pos)
 {
+	/* choose shortest direction: rotate up `pos` times or reverse rotate */
 	if (pos <= d->a.size / 2)
 	{
 		while (pos-- > 0)
@@ -29,6 +30,7 @@ void	rotate_a_to_pos(t_data *d, int pos)
 
 void	rotate_b_to_pos(t_data *d, int pos)
 {
+	/* mirror of rotate_a_to_pos for stack B */
 	if (pos <= d->b.size / 2)
 	{
 		while (pos-- > 0)

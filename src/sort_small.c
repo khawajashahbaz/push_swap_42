@@ -14,6 +14,7 @@
 
 static void	sort_three_more(t_data *d, int a, int b, int c)
 {
+	/* handle remaining permutations for three elements (labels are ranks) */
 	if (a > b && b > c)
 	{
 		sa(d);
@@ -41,6 +42,7 @@ void	sort_three(t_data *d)
 	a = d->a.r[0];
 	b = d->a.r[1];
 	c = d->a.r[2];
+	/* if first two out of order but overall sequence fits this case, swap */
 	if (a > b && b < c && a < c)
 		sa(d);
 	else
@@ -49,6 +51,7 @@ void	sort_three(t_data *d)
 
 void	sort_small(t_data *d)
 {
+	/* specialized handling for very small N: move minima to B, sort remaining */
 	set_bench(d, "small sort", "constant small cases");
 	while (d->a.size > 3)
 	{
@@ -59,6 +62,7 @@ void	sort_small(t_data *d)
 		sa(d);
 	else if (d->a.size == 3)
 		sort_three(d);
+	/* push back items from B (which are minima in ascending order) */
 	while (d->b.size > 0)
 		pa(d);
 }

@@ -29,6 +29,7 @@ static void	run_bit(t_data *d, int bit, int size)
 	i = 0;
 	while (i < size)
 	{
+		/* perform one pass of radix by current bit: push zeros to B, rotate ones */
 		if (((d->a.r[0] >> bit) & 1) == 0)
 			pb(d);
 		else
@@ -45,6 +46,7 @@ void	sort_complex(t_data *d)
 	int	bits;
 	int	size;
 
+	/* radix sort on ranks: stable binary passes from LSB to MSB */
 	set_bench(d, "complex binary radix", "O(n log n)");
 	bit = 0;
 	size = d->a.size;

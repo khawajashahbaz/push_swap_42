@@ -16,8 +16,11 @@ static void	push_to(t_stack *dst, t_stack *src)
 {
 	int	i;
 
+	/* nothing to push or no room in destination */
 	if (src->size == 0 || dst->size >= dst->cap)
 		return ;
+
+	/* shift destination elements right to make room at index 0 */
 	i = dst->size;
 	while (i > 0)
 	{
@@ -25,9 +28,13 @@ static void	push_to(t_stack *dst, t_stack *src)
 		dst->r[i] = dst->r[i - 1];
 		i--;
 	}
+
+	/* move first element from source to front of destination */
 	dst->v[0] = src->v[0];
 	dst->r[0] = src->r[0];
 	dst->size++;
+
+	/* shift source elements left to remove the moved element */
 	i = 0;
 	while (i + 1 < src->size)
 	{
@@ -35,6 +42,8 @@ static void	push_to(t_stack *dst, t_stack *src)
 		src->r[i] = src->r[i + 1];
 		i++;
 	}
+
+	/* shrink source size as element was removed */
 	src->size--;
 }
 

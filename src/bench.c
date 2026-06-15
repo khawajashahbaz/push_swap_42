@@ -20,21 +20,23 @@ void	set_bench(t_data *d, char *strategy, char *complexity)
 
 static void	print_line(char *name, int value)
 {
-	ps_putstr_fd(name, 2);
-	ps_putnbr_fd(value, 2);
-	ps_putstr_fd("\n", 2);
+	/* helper to print a labeled integer to stderr */
+	ft_putstr_fd(name, 2);
+	ft_putnbr_fd(value, 2);
+	ft_putstr_fd("\n", 2);
 }
 
 void	print_bench(t_data *d)
 {
-	ps_putstr_fd("\n--- bench ---\n", 2);
-	ps_putstr_fd("strategy: ", 2);
-	ps_putstr_fd(d->bench.strategy, 2);
-	ps_putstr_fd("\ncomplexity: ", 2);
-	ps_putstr_fd(d->bench.complexity, 2);
-	ps_putstr_fd("\ndisorder_x1000: ", 2);
-	ps_putnbr_fd((int)(d->bench.disorder * 1000.0), 2);
-	ps_putstr_fd("\n", 2);
+	/* print a short human-readable benchmark summary to stderr */
+	ft_putstr_fd("\n--- bench ---\n", 2);
+	ft_putstr_fd("strategy: ", 2);
+	ft_putstr_fd(d->bench.strategy, 2);
+	ft_putstr_fd("\ncomplexity: ", 2);
+	ft_putstr_fd(d->bench.complexity, 2);
+	ft_putstr_fd("\ndisorder_x1000: ", 2);
+	ft_putnbr_fd((int)(d->bench.disorder * 1000.0), 2);
+	ft_putstr_fd("\n", 2);
 	print_line("total: ", d->bench.total);
 	print_line("sa: ", d->bench.sa);
 	print_line("sb: ", d->bench.sb);

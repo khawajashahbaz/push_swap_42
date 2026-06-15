@@ -14,6 +14,7 @@
 
 void	sort_simple(t_data *d)
 {
+	/* simple algorithm: repeatedly extract global minimum to B, then restore */
 	set_bench(d, "simple min extraction", "O(n^2)");
 	while (d->a.size > 3)
 	{

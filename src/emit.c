@@ -14,31 +14,33 @@
 
 static void	count_op_two(t_data *d, char *op)
 {
-	if (!ps_strcmp(op, "ra"))
+	/* increment counters for rotate/reverse rotate operations */
+	if (!ft_strcmp(op, "ra"))
 		d->bench.ra++;
-	else if (!ps_strcmp(op, "rb"))
+	else if (!ft_strcmp(op, "rb"))
 		d->bench.rb++;
-	else if (!ps_strcmp(op, "rr"))
+	else if (!ft_strcmp(op, "rr"))
 		d->bench.rr++;
-	else if (!ps_strcmp(op, "rra"))
+	else if (!ft_strcmp(op, "rra"))
 		d->bench.rra++;
-	else if (!ps_strcmp(op, "rrb"))
+	else if (!ft_strcmp(op, "rrb"))
 		d->bench.rrb++;
-	else if (!ps_strcmp(op, "rrr"))
+	else if (!ft_strcmp(op, "rrr"))
 		d->bench.rrr++;
 }
 
 static void	count_op(t_data *d, char *op)
 {
-	if (!ps_strcmp(op, "sa"))
+	/* increment counters for swap/push operations or delegate */
+	if (!ft_strcmp(op, "sa"))
 		d->bench.sa++;
-	else if (!ps_strcmp(op, "sb"))
+	else if (!ft_strcmp(op, "sb"))
 		d->bench.sb++;
-	else if (!ps_strcmp(op, "ss"))
+	else if (!ft_strcmp(op, "ss"))
 		d->bench.ss++;
-	else if (!ps_strcmp(op, "pa"))
+	else if (!ft_strcmp(op, "pa"))
 		d->bench.pa++;
-	else if (!ps_strcmp(op, "pb"))
+	else if (!ft_strcmp(op, "pb"))
 		d->bench.pb++;
 	else
 		count_op_two(d, op);
@@ -46,8 +48,11 @@ static void	count_op(t_data *d, char *op)
 
 void	emit(t_data *d, char *op)
 {
-	ps_putstr_fd(op, 1);
-	ps_putstr_fd("\n", 1);
+	/* print the operation to stdout followed by newline */
+	ft_putstr_fd(op, 1);
+	ft_putstr_fd("\n", 1);
+
+	/* update benchmarking counters */
 	d->bench.total++;
 	count_op(d, op);
 }

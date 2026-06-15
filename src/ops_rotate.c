@@ -18,8 +18,11 @@ static void	rotate_stack(t_stack *s)
 	int	first_r;
 	int	i;
 
+	/* no effect for stacks with fewer than 2 elements */
 	if (s->size < 2)
 		return ;
+
+	/* save the first element, shift everything left, append saved */
 	first_v = s->v[0];
 	first_r = s->r[0];
 	i = 0;
