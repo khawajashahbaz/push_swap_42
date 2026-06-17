@@ -25,15 +25,21 @@ void	sort_adaptive(t_data *d)
 
 void	run_strategy(t_data *d)
 {
-	/* top-level decision: small-size special case or flag-driven choice */
-	if (d->a.size <= 5)
-		sort_small(d);
-	else if (d->flags == STRAT_SIMPLE)
+	/* 1. Strictly obey user-forced flags first */
+	if (d->flags == STRAT_SIMPLE)
 		sort_simple(d);
 	else if (d->flags == STRAT_MEDIUM)
 		sort_medium(d);
 	else if (d->flags == STRAT_COMPLEX)
 		sort_complex(d);
-	else
-		sort_adaptive(d);
+	
+	/* 2. Default/Adaptive behavior */
+	else 
+	{
+		/* Only apply the small-size optimization if no flags were forced */
+		if (d->a.size <= 5)
+			sort_small(d);
+		else
+			sort_adaptive(d);
+	}
 }
