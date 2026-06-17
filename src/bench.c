@@ -26,27 +26,50 @@ static void	print_line(char *name, int value)
 	ft_putstr_fd("\n", 2);
 }
 
-void	print_bench(t_data *d)
+static void print_disorder(t_data *d)
 {
-	/* print a short human-readable benchmark summary to stderr */
-	ft_putstr_fd("\n--- bench ---\n", 2);
-	ft_putstr_fd("strategy: ", 2);
-	ft_putstr_fd(d->bench.strategy, 2);
-	ft_putstr_fd("\ncomplexity: ", 2);
-	ft_putstr_fd(d->bench.complexity, 2);
-	ft_putstr_fd("\ndisorder_x1000: ", 2);
-	ft_putnbr_fd((int)(d->bench.disorder * 1000.0), 2);
-	ft_putstr_fd("\n", 2);
-	print_line("total: ", d->bench.total);
-	print_line("sa: ", d->bench.sa);
-	print_line("sb: ", d->bench.sb);
-	print_line("ss: ", d->bench.ss);
-	print_line("pa: ", d->bench.pa);
-	print_line("pb: ", d->bench.pb);
-	print_line("ra: ", d->bench.ra);
-	print_line("rb: ", d->bench.rb);
-	print_line("rr: ", d->bench.rr);
-	print_line("rra: ", d->bench.rra);
-	print_line("rrb: ", d->bench.rrb);
-	print_line("rrr: ", d->bench.rrr);
+    int whole;
+    int fraction;
+
+    /* Convert 0.4993 to 49.93. Whole = 49, Fraction = 93 */
+    whole = (int)(d->bench.disorder * 100.0);
+    fraction = (int)(d->bench.disorder * 10000.0) % 100;
+
+    ft_putstr_fd("[bench] disorder: ", 2);
+    ft_putnbr_fd(whole, 2);
+    ft_putstr_fd(".", 2);
+    
+    /* Handle leading zero in fraction (e.g., 49.05%) */
+    if (fraction < 10)
+        ft_putstr_fd("0", 2);
+        
+    ft_putnbr_fd(fraction, 2);
+    ft_putstr_fd("%\n", 2);
+}
+
+void    print_bench(t_data *d)
+{
+    /* Call your new helper function first! */
+    print_disorder(d);
+
+    /* Strategy and complexity on the same line, just like the subject */
+    ft_putstr_fd("[bench] strategy: ", 2);
+    ft_putstr_fd(d->bench.strategy, 2);
+    ft_putstr_fd(" / ", 2);
+    ft_putstr_fd(d->bench.complexity, 2);
+    ft_putstr_fd("\n", 2);
+
+    /* Note the spaces after [bench] and matching the subject's 'total_ops' label */
+    print_line("[bench] total_ops: ", d->bench.total);
+    print_line("[bench] sa: ", d->bench.sa);
+    print_line("[bench] sb: ", d->bench.sb);
+    print_line("[bench] ss: ", d->bench.ss);
+    print_line("[bench] pa: ", d->bench.pa);
+    print_line("[bench] pb: ", d->bench.pb);
+    print_line("[bench] ra: ", d->bench.ra);
+    print_line("[bench] rb: ", d->bench.rb);
+    print_line("[bench] rr: ", d->bench.rr);
+    print_line("[bench] rra: ", d->bench.rra);
+    print_line("[bench] rrb: ", d->bench.rrb);
+    print_line("[bench] rrr: ", d->bench.rrr);
 }
