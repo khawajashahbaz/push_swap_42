@@ -772,7 +772,28 @@ Binary Radix  │ ~600-800    │ Excellent
 - [ ] Extended benchmarking suite
 
 ---
+## Team Contribution
+This project was completed collaboratively with an equal division of labor, leveraging the strengths of both developers to build a robust architecture and efficient algorithms.
 
+**mshahbaz — Core Architecture & Data Management**
+
+Data Validation & Parsing: Engineered the parse.c, parse_numbers.c, and parse_flags.c modules to handle strict 42-norm argument parsing, duplicate detection, and INT_MAX/INT_MIN overflow protections.
+
+State Management: Implemented the core stack initializations, rank assignment arrays, and memory cleanup (init.c, cleanup.c, stack.c, rank.c).
+
+Basic Operations: Developed the fundamental stack manipulation instructions (ops_push.c, ops_swap.c) and operation emission logic (emit.c).
+
+Metrics & Benchmarking: Implemented the mathematical disorder.c logic and the formatted --bench performance output tracker.
+
+**muafzal — Algorithmic Implementation & Optimization**
+
+Core Sorting Logic: Designed and implemented the main algorithmic engines, including the binary radix sort (sort_complex.c) and the chunk-based partition sort (sort_medium.c).
+
+Strategy Routing: Built the adaptive routing logic (strategy.c) that connects the calculated disorder metric to the correct algorithm threshold.
+
+Complex Operations: Handled the implementation of rotational stack shifts (ops_rotate.c, ops_reverse.c).
+
+Algorithmic Optimization: Developed the shortest-path calculation logic (rotate_utils.c, stack_utils.c) to decide whether ra or rra is strictly more efficient when targeting an element's position.
 ## Author
 
 **Khawaja Shahbaz**  

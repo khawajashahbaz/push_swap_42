@@ -9,7 +9,7 @@ src/emit.c src/ops_swap.c src/ops_push.c src/ops_rotate.c src/ops_reverse.c \
 src/parse.c src/parse_flags.c src/parse_numbers.c src/parse_utils.c \
 src/rank.c src/disorder.c src/rotate_utils.c src/sort_small.c \
 src/sort_simple.c src/sort_medium.c src/sort_complex.c src/strategy.c \
-src/bench.c src/validate.c
+src/bench.c
 
 OBJ = $(SRC:.c=.o)
 
