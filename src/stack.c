@@ -42,31 +42,55 @@ void	stack_free(t_stack *s)
 	s->size = 0;
 	s->cap = 0;
 }
-
-int	stack_push_back(t_stack *s, int value, int rank)
+/* Add this new helper function right above stack_push_back */
+static int  resize_stack(t_stack *s)
 {
-	/* ensure capacity before writing at end */
-	if (s->size >= s->cap)
-		return (0);
+    int *new_v;
+    int *new_r;
+    int i;
 
-	/* place value and its rank at the next free slot */
-	s->v[s->size] = value;
-	s->r[s->size] = rank;
-	s->size++;
-	return (1);
+    /* Double the capacity */
+    new_v = malloc(sizeof(int) * (s->cap * 2));
+    new_r = malloc(sizeof(int) * (s->cap * 2));
+    
+    /* If malloc fails, safely clean up and return 0 */
+    if (!new_v || !new_r)
+    {
+        free(new_v);
+        free(new_r);
+        return (0);
+    }
+    
+    /* Copy old data into new larger arrays */
+    i = -1;
+    while (++i < s->size)
+    {
+        new_v[i] = s->v[i];
+        new_r[i] = s->r[i];
+    }
+    
+    /* Free old arrays and point to the new ones */
+    free(s->v);
+    free(s->r);
+    s->v = new_v;
+    s->r = new_r;
+    s->cap *= 2;
+    return (1);
 }
 
-int	is_sorted(t_stack *s)
+/* Update your existing stack_push_back to use the new helper */
+int stack_push_back(t_stack *s, int value, int rank)
 {
-	int	i;
+    /* If stack is full, dynamically resize it */
+    if (s->size >= s->cap)
+    {
+        if (!resize_stack(s))
+            return (0);
+    }
 
-	i = 0;
-	while (i + 1 < s->size)
-{
-		/* if any rank is greater than the next, stack is not sorted */
-		if (s->r[i] > s->r[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
+    /* place value and its rank at the next free slot */
+    s->v[s->size] = value;
+    s->r[s->size] = rank;
+    s->size++;
+    return (1);
 }
