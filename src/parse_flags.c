@@ -31,6 +31,8 @@ int	set_flag(char *s, t_data *d)
 		d->flags = STRAT_ADAPTIVE;
 	else if (!ft_strcmp(s, "--bench"))
 		d->bench.enabled = 1;
+	else if (!ft_strcmp(s, "--count-only"))
+		d->bench.count_only = 1;
 	else
 		return (0);
 	return (1);

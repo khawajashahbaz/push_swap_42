@@ -51,6 +51,7 @@ typedef struct s_bench
 	double	disorder;   /* measure of how unsorted the input is */
 	char	*strategy;   /* chosen strategy name string */
 	char	*complexity; /* human-readable complexity label */
+	int		count_only; /* only count operations, don't perform them */
 }	t_bench;
 
 typedef struct s_data

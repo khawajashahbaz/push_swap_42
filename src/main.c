@@ -43,7 +43,12 @@ int	main(int ac, char **av)
 	/* print benchmark summary when enabled by flags */
 	if (d.bench.enabled)
 		print_bench(&d);
-
+	else if (d.bench.count_only)
+	{
+		/* if count-only mode, print total operations to stderr */
+		ft_putnbr_fd(d.bench.total, 2);
+		ft_putstr_fd("\n", 2);
+	}
 	/* cleanup allocated memory and exit cleanly */
 	free_data(&d);
 	return (0);

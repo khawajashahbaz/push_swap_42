@@ -31,6 +31,7 @@ static void	init_bench(t_bench *b)
 	b->disorder = 0.0;
 	b->strategy = "adaptive";
 	b->complexity = "selected at runtime";
+	b->count_only = 0;
 }
 
 void	init_data(t_data *d)

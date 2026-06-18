@@ -49,8 +49,11 @@ static void	count_op(t_data *d, char *op)
 void	emit(t_data *d, char *op)
 {
 	/* print the operation to stdout followed by newline */
-	ft_putstr_fd(op, 1);
-	ft_putstr_fd("\n", 1);
+	if (!d->bench.count_only)
+	{
+		ft_putstr_fd(op, 1);
+		ft_putstr_fd("\n", 1);
+	}
 
 	/* update benchmarking counters */
 	d->bench.total++;
